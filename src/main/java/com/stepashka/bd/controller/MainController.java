@@ -60,6 +60,11 @@ public class MainController {
         newWindow(Table.STOCKS);
     }
 
+    @FXML
+    void onExecuteButton(ActionEvent event) {
+        newWindow(Table.PACKAGE_MODE);
+    }
+
     private void newWindow(Table table) {
         try {
             Stage stage = new Stage();

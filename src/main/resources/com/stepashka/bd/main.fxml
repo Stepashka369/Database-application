@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="353.0" maxWidth="262.0" minHeight="311.0" minWidth="262.0" prefHeight="353.0" prefWidth="262.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.stepashka.bd.controller.MainController">
+<AnchorPane maxHeight="370.0" maxWidth="500.0" minHeight="370.0" minWidth="500.0" prefHeight="370.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.stepashka.bd.controller.MainController">
    <children>
-      <Button fx:id="clothingSizesButton" layoutX="32.0" layoutY="46.0" mnemonicParsing="false" onAction="#onClothingSizesButton" prefHeight="37.0" prefWidth="198.0" text="ClothingSizes" textAlignment="CENTER" />
-      <Button fx:id="clothingBrandsButton" layoutX="32.0" layoutY="93.0" mnemonicParsing="false" onAction="#onClothingBrandsButton" prefHeight="37.0" prefWidth="198.0" text="ClothingBrands" textAlignment="CENTER" />
-      <Button fx:id="clothingTypesButton" layoutX="32.0" layoutY="139.0" mnemonicParsing="false" onAction="#onClothingTypesButton" prefHeight="37.0" prefWidth="198.0" text="ClothingTypes" textAlignment="CENTER" />
-      <Button fx:id="clientsButton" layoutX="32.0" layoutY="189.0" mnemonicParsing="false" onAction="#onClientsButton" prefHeight="37.0" prefWidth="198.0" text="Clients" textAlignment="CENTER" />
-      <Button fx:id="clothesButton" layoutX="32.0" layoutY="237.0" mnemonicParsing="false" onAction="#onClothesButton" prefHeight="37.0" prefWidth="198.0" text="Clothes" textAlignment="CENTER" />
-      <Button fx:id="stockButton" layoutX="32.0" layoutY="284.0" mnemonicParsing="false" onAction="#onStockButton" prefHeight="37.0" prefWidth="198.0" text="Stock" textAlignment="CENTER" />
-      <MenuBar layoutY="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="Mode">
-            <items>
-                  <MenuItem mnemonicParsing="false" text="Interactive mode" />
-              <MenuItem mnemonicParsing="false" text="Package mode" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
+      <Button fx:id="clothingSizesButton" layoutX="32.0" layoutY="62.0" maxHeight="40.0" maxWidth="200.0" minHeight="40.0" minWidth="200.0" mnemonicParsing="false" onAction="#onClothingSizesButton" prefHeight="40.0" prefWidth="200.0" text="ClothingSizes" textAlignment="CENTER" />
+      <Button fx:id="clothingBrandsButton" layoutX="32.0" layoutY="109.0" maxHeight="40.0" maxWidth="200.0" minHeight="40.0" minWidth="200.0" mnemonicParsing="false" onAction="#onClothingBrandsButton" prefHeight="40.0" prefWidth="200.0" text="ClothingBrands" textAlignment="CENTER" />
+      <Button fx:id="clothingTypesButton" layoutX="32.0" layoutY="155.0" maxHeight="40.0" maxWidth="200.0" minHeight="40.0" minWidth="200.0" mnemonicParsing="false" onAction="#onClothingTypesButton" prefHeight="40.0" prefWidth="200.0" text="ClothingTypes" textAlignment="CENTER" />
+      <Button fx:id="clientsButton" layoutX="32.0" layoutY="201.0" maxHeight="40.0" maxWidth="200.0" minHeight="40.0" minWidth="200.0" mnemonicParsing="false" onAction="#onClientsButton" prefHeight="40.0" prefWidth="200.0" text="Clients" textAlignment="CENTER" />
+      <Button fx:id="clothesButton" layoutX="32.0" layoutY="248.0" maxHeight="40.0" maxWidth="200.0" minHeight="40.0" minWidth="200.0" mnemonicParsing="false" onAction="#onClothesButton" prefHeight="40.0" prefWidth="200.0" text="Clothes" textAlignment="CENTER" />
+      <Button fx:id="stockButton" layoutX="32.0" layoutY="296.0" maxHeight="40.0" maxWidth="200.0" minHeight="40.0" minWidth="200.0" mnemonicParsing="false" onAction="#onStockButton" prefHeight="40.0" prefWidth="200.0" text="Stock" textAlignment="CENTER" />
+      <Button fx:id="packageButton" layoutX="269.0" layoutY="63.0" maxHeight="40.0" maxWidth="200.0" minHeight="40.0" minWidth="200.0" mnemonicParsing="false" onAction="#onExecuteButton" prefHeight="40.0" prefWidth="200.0" text="Package" />
+      <Label layoutX="96.0" layoutY="14.0" text="Tables">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="333.0" layoutY="14.0" text="Modes">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

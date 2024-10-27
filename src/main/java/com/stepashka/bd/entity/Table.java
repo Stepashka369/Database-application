@@ -9,7 +9,8 @@ public enum Table {
     CLOTHES(List.of("cost", "note"), "clothes.fxml"),
     CLOTHING_BRANDS(List.of("code", "note"), "clothing-brands.fxml"),
     CLOTHING_TYPES(List.of("code", "note"), "clothing-type.fxml"),
-    STOCKS(List.of("town", "address"), "stock.fxml");
+    STOCKS(List.of("town", "address"), "stock.fxml"),
+    PACKAGE_MODE(List.of(), "package.fxml");
 
     private final List<String> columns;
     private final String fxmlFileName;
