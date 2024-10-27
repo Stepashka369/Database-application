@@ -1,7 +1,7 @@
 package com.stepashka.bd.controller;
 
 import com.stepashka.bd.error.StorageException;
-import com.stepashka.bd.model.ClothingSize;
+import com.stepashka.bd.entity.ClothingSize;
 import com.stepashka.bd.storage.ClothingSizeStorageImpl;
 import com.stepashka.bd.storage.ObjectStorage;
 import javafx.collections.FXCollections;
@@ -9,13 +9,16 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ClothingSizesController implements Initializable {
+public class ClothingSizesController extends AbstractController implements Initializable {
 
     @FXML
     private TableColumn<ClothingSize, String> codeColumn;
@@ -44,11 +47,9 @@ public class ClothingSizesController implements Initializable {
             if(isSelectedItemAndId()) {
                 clothingSizeStorage.delete(selectedItem.getId());
                 observableList.remove(selectedItem);
-                selectedItem = null;
             } else {
                 showInformationAlert("Объект таблицы не выбран.");
             }
-
         } catch (StorageException ex){
             showErrorAlert("Ошибка при удалении объекта.");
         }
@@ -61,8 +62,8 @@ public class ClothingSizesController implements Initializable {
                     .code(codeTextField.getText())
                     .note(noteTextField.getText())
                     .build();
+            item.setId(clothingSizeStorage.save(item));
             observableList.add(item);
-            clothingSizeStorage.save(item);
         } catch (StorageException ex){
             showErrorAlert("Ошибка при добавлении объекта.");
         }
@@ -79,7 +80,6 @@ public class ClothingSizesController implements Initializable {
                 observableList.remove(selectedItem);
                 clothingSizeStorage.update(item);
                 observableList.add(item);
-                selectedItem = null;
             } else {
                 showInformationAlert("Объект таблицы не выбран.");
             }
@@ -106,20 +106,6 @@ public class ClothingSizesController implements Initializable {
         } catch (StorageException ex) {
             showErrorAlert("Ошибка при инициализации окна.");
         }
-    }
-
-    private void showErrorAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("ERROR");
-        alert.setHeaderText(message);
-        alert.showAndWait();
-    }
-
-    private void showInformationAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("INFORMATION");
-        alert.setHeaderText(message);
-        alert.showAndWait();
     }
 
     private boolean isSelectedItemAndId() {

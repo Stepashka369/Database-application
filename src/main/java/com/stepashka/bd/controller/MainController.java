@@ -1,7 +1,7 @@
 package com.stepashka.bd.controller;
 
 import com.stepashka.bd.HelloApplication;
-import com.stepashka.bd.model.Table;
+import com.stepashka.bd.entity.Table;
 import com.stepashka.bd.storage.ObjectStorage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

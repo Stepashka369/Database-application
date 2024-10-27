@@ -1,8 +1,9 @@
 package com.stepashka.bd.controller;
 
+import com.stepashka.bd.entity.ClothingBrands;
+import com.stepashka.bd.entity.ClothingSize;
 import com.stepashka.bd.error.StorageException;
-import com.stepashka.bd.entity.Client;
-import com.stepashka.bd.storage.ClientStorageImpl;
+import com.stepashka.bd.storage.ClothingBrandStorageImpl;
 import com.stepashka.bd.storage.ObjectStorage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,38 +19,41 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ClientsController extends AbstractController implements Initializable {
+public class ClothingBrandsController extends AbstractController implements Initializable {
 
     @FXML
     private Button deleteButton;
-    @FXML
-    private TableColumn<Client, String> emailColumn;
-    @FXML
-    private TextField emailTextField;
+
     @FXML
     private Button insertButton;
+
     @FXML
-    private TableColumn<Client, String> nameColumn;
+    private TableColumn<ClothingBrands, String> codeColumn;
+
     @FXML
-    private TextField nameTextField;
+    private TextField codeTextField;
+
     @FXML
-    private TableColumn<?, ?> surnameColumn;
+    private TableColumn<ClothingSize, String> noteColumn;
+
     @FXML
-    private TextField surnameTextField;
+    private TextField noteTextField;
+
     @FXML
-    private TableView<Client> tableView;
+    private TableView<ClothingBrands> tableView;
+
     @FXML
     private Button updateButton;
 
-    private ObjectStorage clientsStorage;
-    private ObservableList<Client> observableList;
-    private Client selectedItem;
+    private ObjectStorage clothingBrandStorage;
+    private ObservableList<ClothingBrands> observableList;
+    private ClothingBrands selectedItem;
 
     @FXML
     void onDeleteButton(ActionEvent event) {
         try{
             if(isSelectedItemAndId()) {
-                clientsStorage.delete(selectedItem.getId());
+                clothingBrandStorage.delete(selectedItem.getId());
                 observableList.remove(selectedItem);
             } else {
                 showInformationAlert("Объект таблицы не выбран.");
@@ -63,12 +67,11 @@ public class ClientsController extends AbstractController implements Initializab
     @FXML
     void onInsertButton(ActionEvent event) {
         try{
-            var item = Client.builder()
-                    .name(nameTextField.getText())
-                    .surname(surnameTextField.getText())
-                    .email(emailTextField.getText())
+            var item = ClothingBrands.builder()
+                    .code(codeTextField.getText())
+                    .note(noteTextField.getText())
                     .build();
-            item.setId(clientsStorage.save(item));
+            item.setId(clothingBrandStorage.save(item));
             observableList.add(item);
         } catch (StorageException ex){
             showErrorAlert("Ошибка при добавлении объекта.");
@@ -80,12 +83,11 @@ public class ClientsController extends AbstractController implements Initializab
         try{
             if(isSelectedItemAndId()) {
                 var item = selectedItem.toBuilder()
-                        .name(nameTextField.getText())
-                        .surname(surnameTextField.getText())
-                        .email(emailTextField.getText())
+                        .code(codeTextField.getText())
+                        .note(noteTextField.getText())
                         .build();
                 observableList.remove(selectedItem);
-                clientsStorage.update(item);
+                clothingBrandStorage.update(item);
                 observableList.add(item);
             } else {
                 showInformationAlert("Объект таблицы не выбран.");
@@ -98,23 +100,26 @@ public class ClientsController extends AbstractController implements Initializab
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            clientsStorage = new ClientStorageImpl();
-            observableList = FXCollections.observableList(clientsStorage.getAll());
-            nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-            surnameColumn.setCellValueFactory(new PropertyValueFactory<>("surname"));
-            emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+            clothingBrandStorage = new ClothingBrandStorageImpl();
+            observableList = FXCollections.observableList(clothingBrandStorage.getAll());
+            codeColumn.setCellValueFactory(new PropertyValueFactory<>("code"));
+            noteColumn.setCellValueFactory(new PropertyValueFactory<>("note"));
             tableView.setItems(observableList);
             tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
                 if (newValue != null) {
                     selectedItem = newValue;
-                    nameTextField.setText(newValue.getName());
-                    surnameTextField.setText(newValue.getSurname());
-                    emailTextField.setText(newValue.getEmail());
+                    codeTextField.setText(newValue.getCode());
+                    noteTextField.setText(newValue.getNote());
                 }
             });
         } catch (StorageException ex) {
             showErrorAlert("Ошибка при инициализации окна.");
         }
+    }
+
+    private void clearTextFields(){
+        codeTextField.setText("");
+        noteTextField.setText("");
     }
 
     private boolean isSelectedItemAndId() {

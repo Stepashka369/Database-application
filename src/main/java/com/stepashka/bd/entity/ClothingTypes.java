@@ -1,8 +1,10 @@
-package com.stepashka.bd.model;
+package com.stepashka.bd.entity;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder(toBuilder = true)
 public class ClothingTypes {
     private Long id;
     private String code;
