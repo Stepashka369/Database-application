@@ -9,7 +9,7 @@ public class Clothes {
     private Long id;
     private Float cost;
     private String note;
-    private Long sizeId;
-    private Long typeId;
-    private Long brandId;
+    private ClothingSize size;
+    private ClothingType type;
+    private ClothingBrand brand;
 }

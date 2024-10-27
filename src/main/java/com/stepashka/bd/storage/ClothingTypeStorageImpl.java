@@ -1,6 +1,6 @@
 package com.stepashka.bd.storage;
 
-import com.stepashka.bd.entity.ClothingTypes;
+import com.stepashka.bd.entity.ClothingType;
 import com.stepashka.bd.error.StorageException;
 import lombok.extern.slf4j.Slf4j;
 
@@ -13,21 +13,21 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Slf4j
-public class ClothingTypeStorageImpl extends DatabaseConnector implements ObjectStorage<ClothingTypes> {
+public class ClothingTypeStorageImpl extends DatabaseConnector implements ObjectStorage<ClothingType> {
     private String SAVE_SQL = "INSERT INTO clothing_types (type_code, type_note) VALUES(?, ?)";
     private String UPDATE_SQL = "UPDATE clothing_types SET type_code=?, type_note=? WHERE type_id=?";
     private String DELETE_SQL = "DELETE FROM clothing_types WHERE type_id=?";
     private String SELECT_ALL_SQL = "SELECT * FROM clothing_types";
 
     @Override
-    public List<ClothingTypes> getAll() throws StorageException {
-        List<ClothingTypes> list = new LinkedList<>();
+    public List<ClothingType> getAll() throws StorageException {
+        List<ClothingType> list = new LinkedList<>();
 
         try(Connection connection = setConnection()){
             Statement statement = connection.createStatement();
             ResultSet result = statement.executeQuery(SELECT_ALL_SQL);
             while(result.next()) {
-                var item = ClothingTypes.builder()
+                var item = ClothingType.builder()
                         .id(result.getLong("type_id"))
                         .code(result.getString("type_code"))
                         .note(result.getString("type_note"))
@@ -42,7 +42,7 @@ public class ClothingTypeStorageImpl extends DatabaseConnector implements Object
     }
 
     @Override
-    public Long save(ClothingTypes entity) throws StorageException {
+    public Long save(ClothingType entity) throws StorageException {
         Long id = 0L;
 
         try(Connection connection = setConnection()){
@@ -64,7 +64,7 @@ public class ClothingTypeStorageImpl extends DatabaseConnector implements Object
     }
 
     @Override
-    public void update(ClothingTypes entity) throws StorageException {
+    public void update(ClothingType entity) throws StorageException {
         try(Connection connection = setConnection()){
             PreparedStatement statement = connection.prepareStatement(UPDATE_SQL);
             statement.setString(1, entity.getCode());

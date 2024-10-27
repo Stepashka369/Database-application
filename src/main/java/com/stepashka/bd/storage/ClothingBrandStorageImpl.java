@@ -1,6 +1,6 @@
 package com.stepashka.bd.storage;
 
-import com.stepashka.bd.entity.ClothingBrands;
+import com.stepashka.bd.entity.ClothingBrand;
 import com.stepashka.bd.error.StorageException;
 import lombok.extern.slf4j.Slf4j;
 
@@ -13,21 +13,21 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Slf4j
-public class ClothingBrandStorageImpl extends DatabaseConnector implements ObjectStorage<ClothingBrands> {
+public class ClothingBrandStorageImpl extends DatabaseConnector implements ObjectStorage<ClothingBrand> {
     private String SAVE_SQL = "INSERT INTO clothing_brands (brand_code, brand_note) VALUES(?, ?)";
     private String UPDATE_SQL = "UPDATE clothing_brands SET brand_code=?, brand_note=? WHERE brand_id=?";
     private String DELETE_SQL = "DELETE FROM clothing_brands WHERE brand_id=?";
     private String SELECT_ALL_SQL = "SELECT * FROM clothing_brands";
 
     @Override
-    public List<ClothingBrands> getAll() throws StorageException {
-        List<ClothingBrands> list = new LinkedList<>();
+    public List<ClothingBrand> getAll() throws StorageException {
+        List<ClothingBrand> list = new LinkedList<>();
 
         try(Connection connection = setConnection()){
             Statement statement = connection.createStatement();
             ResultSet result = statement.executeQuery(SELECT_ALL_SQL);
             while(result.next()) {
-                var item = ClothingBrands.builder()
+                var item = ClothingBrand.builder()
                         .id(result.getLong("brand_id"))
                         .code(result.getString("brand_code"))
                         .note(result.getString("brand_note"))
@@ -42,7 +42,7 @@ public class ClothingBrandStorageImpl extends DatabaseConnector implements Objec
     }
 
     @Override
-    public Long save(ClothingBrands entity) throws StorageException {
+    public Long save(ClothingBrand entity) throws StorageException {
         Long id = 0L;
 
         try(Connection connection = setConnection()){
@@ -64,7 +64,7 @@ public class ClothingBrandStorageImpl extends DatabaseConnector implements Objec
     }
 
     @Override
-    public void update(ClothingBrands entity) throws StorageException {
+    public void update(ClothingBrand entity) throws StorageException {
         try(Connection connection = setConnection()){
             PreparedStatement statement = connection.prepareStatement(UPDATE_SQL);
             statement.setString(1, entity.getCode());

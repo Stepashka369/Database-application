@@ -1,6 +1,6 @@
 package com.stepashka.bd.controller;
 
-import com.stepashka.bd.entity.ClothingBrands;
+import com.stepashka.bd.entity.ClothingBrand;
 import com.stepashka.bd.entity.ClothingSize;
 import com.stepashka.bd.error.StorageException;
 import com.stepashka.bd.storage.ClothingBrandStorageImpl;
@@ -28,7 +28,7 @@ public class ClothingBrandsController extends AbstractController implements Init
     private Button insertButton;
 
     @FXML
-    private TableColumn<ClothingBrands, String> codeColumn;
+    private TableColumn<ClothingBrand, String> codeColumn;
 
     @FXML
     private TextField codeTextField;
@@ -40,14 +40,14 @@ public class ClothingBrandsController extends AbstractController implements Init
     private TextField noteTextField;
 
     @FXML
-    private TableView<ClothingBrands> tableView;
+    private TableView<ClothingBrand> tableView;
 
     @FXML
     private Button updateButton;
 
     private ObjectStorage clothingBrandStorage;
-    private ObservableList<ClothingBrands> observableList;
-    private ClothingBrands selectedItem;
+    private ObservableList<ClothingBrand> observableList;
+    private ClothingBrand selectedItem;
 
     @FXML
     void onDeleteButton(ActionEvent event) {
@@ -67,7 +67,7 @@ public class ClothingBrandsController extends AbstractController implements Init
     @FXML
     void onInsertButton(ActionEvent event) {
         try{
-            var item = ClothingBrands.builder()
+            var item = ClothingBrand.builder()
                     .code(codeTextField.getText())
                     .note(noteTextField.getText())
                     .build();

@@ -1,6 +1,6 @@
 package com.stepashka.bd.controller;
 
-import com.stepashka.bd.entity.ClothingTypes;
+import com.stepashka.bd.entity.ClothingType;
 import com.stepashka.bd.error.StorageException;
 import com.stepashka.bd.storage.ClothingTypeStorageImpl;
 import com.stepashka.bd.storage.ObjectStorage;
@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 public class ClothingTypesController extends AbstractController implements Initializable {
 
     @FXML
-    private TableColumn<ClothingTypes, String> codeColumn;
+    private TableColumn<ClothingType, String> codeColumn;
 
     @FXML
     private TextField codeTextField;
@@ -33,20 +33,20 @@ public class ClothingTypesController extends AbstractController implements Initi
     private Button insertButton;
 
     @FXML
-    private TableColumn<ClothingTypes, String> noteColumn;
+    private TableColumn<ClothingType, String> noteColumn;
 
     @FXML
     private TextField noteTextField;
 
     @FXML
-    private TableView<ClothingTypes> tableView;
+    private TableView<ClothingType> tableView;
 
     @FXML
     private Button updateButton;
 
     private ObjectStorage clothingTypesStorage;
-    private ObservableList<ClothingTypes> observableList;
-    private ClothingTypes selectedItem;
+    private ObservableList<ClothingType> observableList;
+    private ClothingType selectedItem;
 
     @FXML
     void onDeleteButton(ActionEvent event) {
@@ -65,7 +65,7 @@ public class ClothingTypesController extends AbstractController implements Initi
     @FXML
     void onInsertButton(ActionEvent event) {
         try{
-            var item = ClothingTypes.builder()
+            var item = ClothingType.builder()
                     .code(codeTextField.getText())
                     .note(noteTextField.getText())
                     .build();

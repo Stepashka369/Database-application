@@ -18,11 +18,11 @@
             <TableColumn fx:id="noteColumn" maxWidth="160.0" minWidth="160.0" prefWidth="160.0" text="note" />
             </columns>
         </TableView>
-        <TextField fx:id="surnameTextField" layoutX="160.0" layoutY="400.0" maxHeight="25.0" maxWidth="160.0" minHeight="25.0" minWidth="160.0" prefHeight="25.0" prefWidth="160.0" text="surname" />
+        <TextField fx:id="costTextField" layoutX="160.0" layoutY="400.0" maxHeight="25.0" maxWidth="160.0" minHeight="25.0" minWidth="160.0" prefHeight="25.0" prefWidth="160.0" text="cost" />
         <Button fx:id="insertButton" layoutX="57.0" layoutY="443.0" maxHeight="35.0" maxWidth="150.0" minHeight="35.0" minWidth="150.0" mnemonicParsing="false" onAction="#onInsertButton" prefHeight="35.0" prefWidth="150.0" text="INSERT" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="50.0" />
         <Button fx:id="updateButton" layoutX="325.0" layoutY="445.0" maxHeight="35.0" maxWidth="150.0" minHeight="35.0" minWidth="150.0" mnemonicParsing="false" onAction="#onUpdateButton" prefHeight="35.0" prefWidth="150.0" text="UPDATE" />
         <Button fx:id="deleteButton" layoutX="600.0" layoutY="443.0" maxHeight="35.0" maxWidth="150.0" minHeight="35.0" minWidth="150.0" mnemonicParsing="false" onAction="#onDeleteButton" prefHeight="35.0" prefWidth="150.0" text="DELETE" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="50.0" />
-        <TextField fx:id="noteTextField" layoutX="640.0" layoutY="400.0" maxHeight="25.0" maxWidth="160.0" minHeight="25.0" minWidth="160.0" prefHeight="25.0" prefWidth="160.0" text="email" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="400.0" />
+        <TextField fx:id="noteTextField" layoutX="640.0" layoutY="400.0" maxHeight="25.0" maxWidth="160.0" minHeight="25.0" minWidth="160.0" prefHeight="25.0" prefWidth="160.0" text="note" AnchorPane.topAnchor="400.0" />
       <ComboBox fx:id="typeComboBox" layoutY="400.0" maxHeight="25.0" maxWidth="160.0" minHeight="25.0" minWidth="160.0" prefHeight="25.0" prefWidth="160.0" />
       <ComboBox fx:id="sizeComboBox" layoutX="320.0" layoutY="400.0" maxHeight="25.0" maxWidth="160.0" minHeight="25.0" minWidth="160.0" prefHeight="25.0" prefWidth="160.0" />
       <ComboBox fx:id="brandComboBox" layoutX="480.0" layoutY="400.0" maxHeight="25.0" maxWidth="160.0" minHeight="25.0" minWidth="160.0" prefHeight="25.0" prefWidth="160.0" />

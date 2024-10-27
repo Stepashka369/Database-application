@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Builder(toBuilder = true)
-public class ClothingTypes {
+public class ClothingType {
     private Long id;
     private String code;
     private String note;
