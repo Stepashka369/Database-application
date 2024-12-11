@@ -18,6 +18,7 @@ public class StockStorageImpl extends DatabaseConnector implements ObjectStorage
     private String UPDATE_SQL = "UPDATE stocks SET stock_town=?, stock_address=? WHERE stock_id=?";
     private String DELETE_SQL = "DELETE FROM stocks WHERE stock_id=?";
     private String SELECT_ALL_SQL = "SELECT * FROM stocks";
+    private String FIND_BY_ID_SQL = "SELECT * FROM stocks WHERE stock_id=?";
 
     @Override
     public List<Stock> getAll() throws StorageException {
@@ -87,6 +88,27 @@ public class StockStorageImpl extends DatabaseConnector implements ObjectStorage
             var message = "Ошибка удаления объекта stocks (id=%s).".formatted(id);
             handleException(ex.getMessage(), message);
         }
+    }
+
+    public Stock findById(Long id) throws StorageException {
+        Stock item = Stock.builder().build();
+
+        try(Connection connection = setConnection()){
+            PreparedStatement statement = connection.prepareStatement(FIND_BY_ID_SQL);
+            statement.setLong(1, id);
+            ResultSet result = statement.executeQuery();
+            if(result.next()) {
+                item = Stock.builder()
+                    .id(result.getLong("stock_id"))
+                    .town(result.getString("stock_town"))
+                    .address(result.getString("stock_address"))
+                    .build();
+            }
+        } catch (SQLException ex){
+            var message = "Ошибка извлечения полей таблицы stocks.";
+            handleException(ex.getMessage(), message);
+        }
+        return item;
     }
 
     private void handleException(String errorMessage, String message) throws StorageException {
